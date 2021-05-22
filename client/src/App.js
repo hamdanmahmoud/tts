@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
+import React, { useEffect, useState } from "react";
 const ENDPOINT = "http://127.0.0.1:5000";
 
 function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on("message", data => {
-      setMessage(data);
-    });
-
-    return () => socket.disconnect();
-  }, []);
+    const id = setInterval(() => {
+      fetch(ENDPOINT)
+      .then(res => res.json())
+      .then(res => {
+        setMessage('...' + res.message + '...');
+      })
+      .catch(err => {
+        clearInterval(id);
+      });
+    }, 1000);
+  }, [])
 
   return (
-    <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
-      <p>
+    <div style={{display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap", margin: "30% 0"}}>
+      <div style={{fontSize: "30px", fontWeight: "400", textAlign: "center"}}>
         {message}
-      </p>
+      </div>
     </div>
   );
 }
