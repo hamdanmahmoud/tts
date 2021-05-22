@@ -1,0 +1,67 @@
+.App {
+  text-align: center;
+}
+
+html {
+  background-color: #16bae7;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.flag {
+  background-repeat: no-repeat;
+  background-size: 5rem;
+  background-position: center;
+  height: 5rem;
+  width: 5rem;
+  max-width: 10rem;
+}
+
+.flag-en {
+  background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png");
+}
+
+.flag-ro {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/1200px-Flag_of_Romania.svg.png");
+}
+
+.flag-fr {
+  background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1200px-Flag_of_France.svg.png");
+}
+
+.flag-ar {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/bb/Arabic-Language-Flag.svg");
+}

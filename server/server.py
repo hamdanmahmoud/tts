@@ -9,7 +9,8 @@ from deep_translator import GoogleTranslator
 import random #remove this
 import string #remove this
 
-LANGUAGE = "en-EN"
+SOURCE_LANGUAGE = "en"
+TARGET_LANGUAGE = "ro"
 PAUSE_THRESHOLD = 0.1 # non-speaking duration that leads to phrase compelted
 PHRASE_THRESHOLD = 0.05 # minimum duration for which spoken audio is considered a phrase (if this threshold is not reached, audio is considered noise)
 NON_SPEAKING_DURATION = 0.05
@@ -29,11 +30,13 @@ def save_speech(text):
 def home():
     letters = string.ascii_lowercase
     random_words = []
-    for j in range(15):
-        random_words.append(''.join(random.choice(letters) for i in range(10)))
+    for j in range(12):
+        random_words.append(''.join(random.choice(letters) for i in range(8)))
     res = {
         # "message": " ".join(speech[-NUMBER_OF_WORDS:])
-        "message": " ".join(random_words)
+        "message": " ".join(random_words),
+        "source": SOURCE_LANGUAGE,
+        "target": TARGET_LANGUAGE
     }
     return json.dumps(res)
 
@@ -46,8 +49,8 @@ def configurate_recognizer(recognizer, source):
 # this callback gets called each time audio data is received from the background thread
 def callback(recognizer, audio):
     try:
-        recognized_text = recognizer.recognize_google(audio, language=LANGUAGE)
-        translated_text = GoogleTranslator(source="en", target="ro").translate(recognized_text)
+        recognized_text = recognizer.recognize_google(audio, language="en-EN")
+        translated_text = GoogleTranslator(source=SOURCE_LANGUAGE, target=TARGET_LANGUAGE).translate(recognized_text)
         save_speech(translated_text)
     except sr.UnknownValueError: # GSR could not understand audio
         pass
