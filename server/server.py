@@ -28,13 +28,13 @@ def save_speech(text):
 
 @app.route('/', methods=['GET'])
 def home():
-    letters = string.ascii_lowercase
-    random_words = []
-    for j in range(12):
-        random_words.append(''.join(random.choice(letters) for i in range(8)))
+    #letters = string.ascii_lowercase
+    #random_words = []
+    #for j in range(12):
+    #    random_words.append(''.join(random.choice(letters) for i in range(8)))
     res = {
-        # "message": " ".join(speech[-NUMBER_OF_WORDS:])
-        "message": " ".join(random_words),
+        "message": " ".join(speech[-NUMBER_OF_WORDS:]),
+        #"message": " ".join(random_words),
         "source": SOURCE_LANGUAGE,
         "target": TARGET_LANGUAGE
     }
